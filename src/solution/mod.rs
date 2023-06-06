@@ -1,1 +1,4 @@
+mod s0242_valid_anagram;
 mod s0846_hand_of_straights;
+mod s0677_map_sum_pairs;
+mod s2352_equal_row_and_column_pairs;

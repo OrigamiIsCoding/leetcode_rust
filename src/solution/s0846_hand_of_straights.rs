@@ -45,6 +45,9 @@ mod tests {
             true,
             Solution::is_n_straight_hand(vec![1, 2, 3, 6, 2, 3, 4, 7, 8], 3)
         );
+    }
+    #[test]
+    fn test_2() {
         assert_eq!(false, Solution::is_n_straight_hand(vec![1, 2, 3, 4, 5], 4));
     }
 }

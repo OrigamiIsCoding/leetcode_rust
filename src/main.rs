@@ -1,3 +1,10 @@
+use tera::Tera;
+
 fn main() {
-    println!("Hello, world!");
+    let tera = match Tera::new("templates/solution_template.rs") {
+        Err(e) => {
+            panic!("Parsing error(s): {}",e)
+        },
+        Ok(t) => t,
+    };
 }
