@@ -1,3 +1,6 @@
+pub mod i32_singly_linked_list;
+
+
 #[macro_export]
 macro_rules! mat{
     [ $( [ $( $d:expr ),* ] ),* ] => {
