@@ -33,7 +33,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::intovec;
+    use crate::vec_into;
 
     use super::*;
 
@@ -41,7 +41,7 @@ mod tests {
     fn test_1() {
         assert_eq!(
             vec![1],
-            Solution::num_smaller_by_frequency(intovec!["cbd"], intovec!["zaaaz"])
+            Solution::num_smaller_by_frequency(vec_into!["cbd"], vec_into!["zaaaz"])
         );
     }
 
@@ -50,8 +50,8 @@ mod tests {
         assert_eq!(
             vec![1, 2],
             Solution::num_smaller_by_frequency(
-                intovec!["bbb", "cc"],
-                intovec!["a", "aa", "aaa", "aaaa"]
+                vec_into!["bbb", "cc"],
+                vec_into!["a", "aa", "aaa", "aaaa"]
             )
         );
     }

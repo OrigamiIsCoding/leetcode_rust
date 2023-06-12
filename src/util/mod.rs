@@ -1,6 +1,5 @@
 pub mod i32_singly_linked_list;
 
-
 #[macro_export]
 macro_rules! mat{
     [ $( [ $( $d:expr ),* ] ),* ] => {
@@ -13,9 +12,9 @@ macro_rules! mat{
 }
 
 #[macro_export]
-macro_rules! intovec {
+macro_rules! vec_into {
     ( $( $ele:expr ) , *) => {
-       vec![$($ele.into()), *] 
+       vec![$($ele.into()), *]
     };
 }
 
@@ -26,10 +25,10 @@ mod tests {
         let matrix = mat![[1, 2, 3], [4, 5, 6], [7, 8, 9]];
         assert_eq!(vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9],], matrix)
     }
-    
+
     #[test]
-    fn test_intovec() {
-        let svec : Vec<String> = intovec!["123"]; 
+    fn test_vec_into() {
+        let svec: Vec<String> = vec_into!["123"];
         assert_eq!(vec!["123".to_string()], svec);
     }
 }
