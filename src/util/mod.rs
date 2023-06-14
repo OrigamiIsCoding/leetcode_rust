@@ -12,6 +12,17 @@ macro_rules! mat{
 }
 
 #[macro_export]
+macro_rules! mat_into {
+    [ $( [ $( $ele:expr ),* ] ),* ] => {
+        vec![
+            $(
+                vec![$($ele.into()),*],
+            )*
+        ]
+    }
+}
+
+#[macro_export]
 macro_rules! vec_into {
     ( $( $ele:expr ) , *) => {
        vec![$($ele.into()), *]

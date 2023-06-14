@@ -20,36 +20,42 @@ struct Args {
     /// Template Path
     #[arg(short = 'p', long, default_value_t = String::from("templates/*"))]
     template_path: String,
-    /// Problem Title
-    #[arg(short = 't', long)]
-    title: String,
+    /// Problem Url
+    #[arg(short, long)]
+    url: String,
+}
+
+fn process_url(url: &String) -> String {
+    let splitted: Vec<_> = url.split("/").collect();
+    splitted[splitted.len() - 2].to_string().replace("-", "_")
 }
 
 fn main() {
     let args = Args::parse();
     match args.task.as_str() {
         "Solution" => {
+            let title = process_url(&args.url);
             let tera = match Tera::new(&args.template_path) {
                 Err(e) => {
                     panic!("Parsing error(s): {}", e)
                 }
                 Ok(t) => t,
             };
-            let ctx = Context::new();
+            let mut ctx = Context::new();
+            ctx.insert("url", &args.url);
             let rendered = tera.render("solution_template.html", &ctx).unwrap();
             let mut file = File::options()
                 .create(true)
                 .write(true)
                 .open(Path::new("./").join("src").join("solution").join(format!(
                     "s{number:>0width$}_{}.rs",
-                    &args.title.replace("-", "_"),
+                    title,
                     number = args.id,
                     width = 4
                 )))
                 .unwrap();
             file.write_all(rendered.as_bytes()).unwrap();
-
-        },
+        }
         "Mod" => {
             let mut solution_files = Vec::new();
             for entry in fs::read_dir(Path::new("./").join("src").join("solution")).unwrap() {
@@ -80,14 +86,14 @@ fn main() {
                 })
                 .collect::<Vec<_>>()
                 .join("\n");
-            
+
             let mut file = File::options()
                 .create(true)
                 .write(true)
                 .open(Path::new("./").join("src").join("solution").join("mod.rs"))
                 .unwrap();
             file.write_all(mod_content.as_bytes()).unwrap();
-        },
-        _ => println!("Unsupported Task Type")
+        }
+        _ => println!("Unsupported Task Type"),
     }
 }
