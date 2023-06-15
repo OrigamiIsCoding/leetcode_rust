@@ -25,21 +25,23 @@ where
         }
     }
 
-    pub fn add(&mut self, index: usize, d: T) {
-        let mut index = index;
+    pub fn add(&mut self, mut index: usize, d: T) {
         while index <= self.size {
             self.values[index] += d;
             index += Self::lowbit(index);
         }
     }
 
-    pub fn query(&self, rbound: usize) -> T {
-        let mut rbound = rbound;
+    pub fn query(&self, mut rbound: usize) -> T {
         let mut sum = Default::default();
         while rbound > 0 {
             sum += self.values[rbound];
             rbound -= Self::lowbit(rbound);
         }
         sum
+    }
+
+    pub fn len(&self) -> usize {
+        self.size
     }
 }

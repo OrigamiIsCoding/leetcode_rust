@@ -27,16 +27,14 @@ where
         }
     }
 
-    fn add(&mut self, index: usize, d: T) {
-        let mut index = index;
+    fn add(&mut self, mut index: usize, d: T) {
         while index <= self.size {
             self.values[index] += d;
             index += Self::lowbit(index);
         }
     }
 
-    fn query(&self, right: usize) -> T {
-        let mut right = right;
+    fn query(&self, mut right: usize) -> T {
         let mut sum = Default::default();
         while right > 0 {
             sum += self.values[right];
