@@ -8,6 +8,7 @@ mod s1171_remove_zero_sum_consecutive_nodes_from_linked_list;
 mod s1177_can_make_palindrome_from_substring;
 mod s1375_number_of_times_binary_string_is_prefix_aligned;
 mod s1483_kth_ancestor_of_a_tree_node;
+mod s1487_making_file_names_unique;
 mod s2251_number_of_flowers_in_full_bloom;
 mod s2352_equal_row_and_column_pairs;
 mod s2424_longest_uploaded_prefix;
