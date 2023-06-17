@@ -2,10 +2,32 @@
 /// reference: https://leetcode.cn/problems/lru-cache/
 use std::collections::HashMap;
 use std::collections::VecDeque;
+
+struct LRUItem<T> {
+    value: T,
+    count: usize,
+}
+
+impl<T> LRUItem<T> {
+    fn new(value: T) -> Self {
+        Self { value, count: 0 }
+    }
+
+    fn incr(&mut self) -> usize {
+        self.count += 1;
+        self.count
+    }
+
+    fn decr(&mut self) -> usize {
+        self.count -= 1;
+        self.count
+    }
+}
+
 struct LRUCache {
+    // gc
     queue: VecDeque<i32>,
-    count: HashMap<i32, i32>,
-    container: HashMap<i32, i32>,
+    container: HashMap<i32, LRUItem<i32>>,
     capacity: usize,
 }
 
@@ -17,57 +39,53 @@ impl LRUCache {
     fn new(capacity: i32) -> Self {
         Self {
             queue: VecDeque::new(),
-            count: HashMap::new(),
             container: HashMap::new(),
             capacity: capacity as usize,
         }
     }
 
     fn get(&mut self, key: i32) -> i32 {
-        match self.container.get(&key) {
-            Some(&value) => {
-                self.refresh(key);
-                return value;
+        match self.container.get_mut(&key) {
+            Some(item) => {
+                Self::refresh(key, item, &mut self.queue);
+                return item.value;
             }
             None => -1,
         }
     }
 
     fn put(&mut self, key: i32, value: i32) {
-        match self.container.get_mut(&key) {
-            Some(val) => {
+        let item = match self.container.get_mut(&key) {
+            Some(item) => {
                 // modify
-                *val = value;
+                item.value = value;
+                item
             }
             None => {
                 // check capacity
                 if self.container.len() >= self.capacity {
                     self.remove_lru();
                 }
-                self.container.insert(key, value);
+                self.container.entry(key).or_insert(LRUItem::new(value))
             }
-        }
-        self.refresh(key);
-    }
-
-    fn refresh(&mut self, key: i32) {
-        // like reference counting gc
-        self.queue.push_back(key);
-        *self.count.entry(key).or_insert(0) += 1;
+        };
+        Self::refresh(key, item, &mut self.queue);
     }
 
     fn remove_lru(&mut self) {
         while let Some(key) = self.queue.pop_front() {
-            if let Some(value) = self.count.get_mut(&key) {
-                *value -= 1;
-
-                if *value == 0 {
-                    self.count.remove(&key);
-                    self.container.remove(&key);
-                    break;
-                }
+            if self.container.get_mut(&key).unwrap().decr() == 0 {
+                self.container.remove(&key);
+                break;
             }
         }
+    }
+
+    #[inline]
+    fn refresh(key: i32, item: &mut LRUItem<i32>, queue: &mut VecDeque<i32>) {
+        // like reference counting gc
+        queue.push_back(key);
+        item.incr();
     }
 }
 
