@@ -1,6 +1,8 @@
 mod s0022_generate_parentheses;
 mod s0084_largest_rectangle_in_histogra;
 mod s0085_maximal_rectangle;
+mod s0120_triangle;
+mod s0146_lru_cache;
 mod s0242_valid_anagram;
 mod s0300_longest_increasing_subsequence;
 mod s0334_increasing_triplet_subsequence;
