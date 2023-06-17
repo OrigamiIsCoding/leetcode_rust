@@ -46,7 +46,7 @@ where
 // }
 
 impl Solution {
-    pub fn largest_rectangle_area(heights: Vec<i32>) -> i32 {
+    pub fn largest_rectangle_area(_heights: Vec<i32>) -> i32 {
         // let mut stack = MonotoneStack::new(|&a, &b| heights[a] < heights[b]);
         // let mut ans = 0;
         // for (i, h) in heights.iter().enumerate() {}

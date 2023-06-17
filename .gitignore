@@ -2,3 +2,4 @@
 .devcontainer/
 Cargo.lock
 .vscode
+leetcode_rust
