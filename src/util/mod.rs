@@ -1,3 +1,4 @@
+pub mod i32_binary_tree;
 pub mod i32_singly_linked_list;
 
 #[macro_export]
