@@ -2,47 +2,7 @@
 /// reference: https://leetcode.cn/problems/number-of-times-binary-string-is-prefix-aligned/
 pub struct Solution;
 
-use std::ops::AddAssign;
-struct FenwickTree<T>
-where
-    T: AddAssign + Copy + Default,
-{
-    values: Vec<T>,
-    size: usize,
-}
-
-impl<T> FenwickTree<T>
-where
-    T: AddAssign + Copy + Default,
-{
-    #[inline]
-    fn lowbit(x: usize) -> usize {
-        x & x.wrapping_neg()
-    }
-
-    fn new(size: usize) -> Self {
-        Self {
-            values: vec![Default::default(); size + 1],
-            size,
-        }
-    }
-
-    fn add(&mut self, mut index: usize, d: T) {
-        while index <= self.size {
-            self.values[index] += d;
-            index += Self::lowbit(index);
-        }
-    }
-
-    fn query(&self, mut right: usize) -> T {
-        let mut sum = Default::default();
-        while right > 0 {
-            sum += self.values[right];
-            right -= Self::lowbit(right);
-        }
-        sum
-    }
-}
+use crate::data_struct_impl::FenwickTree;
 
 impl Solution {
     pub fn num_times_all_blue(flips: Vec<i32>) -> i32 {
@@ -50,7 +10,7 @@ impl Solution {
         let mut ans = 0;
         for flip in flips {
             ft.add(flip as usize, 1);
-            let count = ft.query(ft.size);
+            let count = ft.query(ft.len());
             if count == ft.query(count) {
                 ans += 1;
             }
