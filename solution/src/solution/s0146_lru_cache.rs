@@ -48,7 +48,7 @@ impl LRUCache {
         match self.container.get_mut(&key) {
             Some(item) => {
                 Self::refresh(key, item, &mut self.queue);
-                return item.value;
+                item.value
             }
             None => -1,
         }

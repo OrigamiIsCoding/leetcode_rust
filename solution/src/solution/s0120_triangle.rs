@@ -17,7 +17,7 @@ impl Solution {
                 }
             }
         }
-        *f[n & 1].iter().min().unwrap() as i32
+        *f[n & 1].iter().min().unwrap()
     }
 }
 

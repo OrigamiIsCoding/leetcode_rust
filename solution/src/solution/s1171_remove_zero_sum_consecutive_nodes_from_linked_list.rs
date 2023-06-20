@@ -22,10 +22,10 @@ impl Solution {
         while let Some(n) = node {
             prefix += n.val;
             if let Some(next) = h.get(&prefix) {
-                n.next = match next.next.as_ref() {
-                    Some(next) => Some(Box::new(ListNode::new(next.val))),
-                    None => None,
-                };
+                n.next = next
+                    .next
+                    .as_ref()
+                    .map(|next| Box::new(ListNode::new(next.val)));
             }
             node = n.next.as_mut();
         }

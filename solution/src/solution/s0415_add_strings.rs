@@ -23,22 +23,18 @@ impl std::ops::Index<usize> for BigInteger {
 impl From<String> for BigInteger {
     fn from(value: String) -> Self {
         Self {
-            nums: value
-                .bytes()
-                .into_iter()
-                .rev()
-                .map(|b| b - ('0' as u8))
-                .collect(),
+            nums: value.bytes().rev().map(|b| b - b'0').collect(),
         }
     }
 }
 
-impl Into<String> for BigInteger {
-    fn into(self) -> String {
-        self.nums
+impl From<BigInteger> for String {
+    fn from(value: BigInteger) -> Self {
+        value
+            .nums
             .into_iter()
             .rev()
-            .map(|num| (num + '0' as u8) as char)
+            .map(|num| (num + b'0') as char)
             .collect()
     }
 }

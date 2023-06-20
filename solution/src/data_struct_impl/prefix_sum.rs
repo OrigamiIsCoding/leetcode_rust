@@ -33,4 +33,8 @@ where
     pub fn len(&self) -> usize {
         self.container.len() - 1
     }
+
+    pub fn is_empty(&self) -> bool {
+        self.container.len() == 1
+    }
 }

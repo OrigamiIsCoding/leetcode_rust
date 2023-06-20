@@ -32,7 +32,7 @@ impl WordDictionary {
 
     fn add_word(&mut self, word: String) {
         let mut p = &mut self.root;
-        for child in word.bytes().map(|b| (b - 'a' as u8) as usize) {
+        for child in word.bytes().map(|b| (b - b'a') as usize) {
             if p.children[child].is_none() {
                 p.children[child] = Some(Item::new());
             }
@@ -59,7 +59,7 @@ impl WordDictionary {
             }
         }
 
-        dfs(0, &self.root, &word.as_bytes())
+        dfs(0, &self.root, word.as_bytes())
     }
 }
 

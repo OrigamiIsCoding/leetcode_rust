@@ -36,7 +36,7 @@ impl std::ops::Sub for Item {
 impl From<u8> for Item {
     fn from(value: u8) -> Self {
         let mut count = [0; 26];
-        count[(value - 'a' as u8) as usize] += 1;
+        count[(value - b'a') as usize] += 1;
         Self { count }
     }
 }
