@@ -3,6 +3,35 @@ use anyhow::{Error, Ok, Result};
 use std::path::PathBuf;
 use tera::Tera;
 
+pub enum Series {
+    Solution,
+    LCP,
+    Interview,
+}
+
+impl Series {
+    fn prefix(&self) -> char {
+        match self {
+            Self::Solution => 's',
+            Self::LCP => 'l',
+            Self::Interview => 'i',
+        }
+    }
+}
+
+impl TryFrom<&str> for Series {
+    type Error = Error;
+
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
+        match value {
+            "solution" => Ok(Self::Solution),
+            "lcp" => Ok(Self::LCP),
+            "interview" => Ok(Self::Interview),
+            _ => Err(Error::msg("unsupported value for Series")),
+        }
+    }
+}
+
 pub struct Config {
     /// problem name
     pub name: String,
@@ -10,21 +39,36 @@ pub struct Config {
     pub id: usize,
     /// problem url
     pub url: String,
-    pub tera: Tera,
     /// output dir
     pub output_dir: String,
     /// template name , `solution_{lang}.jinja`
     pub solution_template_name: String,
+    /// series
+    pub series: Series,
+    pub tera: Tera,
 }
 
 impl Config {
     pub fn solution_path(&self) -> PathBuf {
         PathBuf::new().join(&self.output_dir).join(format!(
-            "s{number:>0width$}_{}.rs",
-            &self.name,
+            "{}{number:>0width$}_{}.rs",
+            &self.series.prefix(),
+            Self::upper_to_snake_case(&self.name),
             number = self.id,
             width = 4
         ))
+    }
+
+    fn upper_to_snake_case(s: &str) -> String {
+        s.chars()
+            .map(|c| {
+                if c.is_uppercase() {
+                    format!("_{}", c.to_lowercase())
+                } else {
+                    c.to_string()
+                }
+            })
+            .collect()
     }
 }
 
@@ -41,10 +85,11 @@ fn process_url(url: &String) -> Result<String> {
 impl TryFrom<Args> for Config {
     type Error = Error;
 
-    fn try_from(args: Args) -> std::result::Result<Self, Self::Error> {
+    fn try_from(args: Args) -> Result<Self, Self::Error> {
         let name = process_url(&args.url)?;
 
         let tera = Tera::new(&args.template_path)?;
+        let series = Series::try_from(args.series.as_str())?;
 
         Ok(Config {
             name,
@@ -53,6 +98,7 @@ impl TryFrom<Args> for Config {
             url: args.url,
             solution_template_name: format!("solution_{}.jinja", &args.lang),
             output_dir: args.output_dir,
+            series,
         })
     }
 }

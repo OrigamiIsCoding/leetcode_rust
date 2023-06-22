@@ -30,6 +30,16 @@ macro_rules! vec_into {
     };
 }
 
+#[macro_export]
+macro_rules! input {
+    // capacity = [10,2,2], rocks = [2,2,0], additionalRocks = 100
+    ( $( $name : item = $value:item ), *) => {
+            $(
+                println!("name = {:?} value = {:?}", name, value);
+            )*
+    };
+}
+
 #[cfg(test)]
 mod tests {
     #[test]
@@ -43,4 +53,7 @@ mod tests {
         let svec: Vec<String> = vec_into!["123"];
         assert_eq!(vec!["123".to_string()], svec);
     }
+
+    #[test]
+    fn test_input() {}
 }

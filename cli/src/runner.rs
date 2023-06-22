@@ -39,13 +39,11 @@ fn generate_mod_file(config: &Config) -> Result<()> {
 
     let mut solutions: Vec<_> = fs::read_dir(&solution_dir)?
         .map(|entry| entry.unwrap().file_name().into_string().unwrap())
-        .filter(|name| name.starts_with('s') && name.contains('_'))
+        .filter(|name| name.contains('_'))
         .map(|name| {
-            let parts: Vec<_> = name.split('_').collect();
-            let number = parts[0][1..].parse::<i32>().unwrap();
-            let mut name = PathBuf::from(parts[1..].join("_"));
-            name.set_extension("");
-            (number, name.to_str().unwrap().to_string())
+            let number = name.split_once('_').unwrap().0[1..].parse::<i32>().unwrap();
+            let name = name.split_once('.').unwrap().0.to_string();
+            (number, name)
         })
         .collect();
 
@@ -53,7 +51,7 @@ fn generate_mod_file(config: &Config) -> Result<()> {
 
     let mod_content = solutions
         .into_iter()
-        .map(|(id, name)| format!("mod s{number:>0width$}_{};", name, number = id, width = 4))
+        .map(|(_, name)| format!("mod {};", name))
         .collect::<Vec<_>>()
         .join("\n");
 

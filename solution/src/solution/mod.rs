@@ -1,4 +1,5 @@
 mod s0022_generate_parentheses;
+mod l0041_f_hi6r_v;
 mod s0084_largest_rectangle_in_histogra;
 mod s0085_maximal_rectangle;
 mod s0120_triangle;
@@ -27,8 +28,11 @@ mod s1375_number_of_times_binary_string_is_prefix_aligned;
 mod s1483_kth_ancestor_of_a_tree_node;
 mod s1487_making_file_names_unique;
 mod s1494_parallel_courses_ii;
+mod i1619_pond_sizes_lcci;
 mod s2210_count_hills_and_valleys_in_an_array;
 mod s2251_number_of_flowers_in_full_bloom;
+mod s2279_maximum_bags_with_full_capacity_of_rocks;
+mod s2280_minimum_lines_to_represent_a_line_chart;
 mod s2352_equal_row_and_column_pairs;
 mod s2424_longest_uploaded_prefix;
 mod s2475_number_of_unequal_triplets_in_array;

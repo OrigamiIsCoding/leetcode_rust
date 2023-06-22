@@ -18,9 +18,14 @@ pub struct Args {
     #[arg(short, long)]
     pub url: String,
     /// code output solution dir
-    #[arg(short, long)]
+    #[arg(short, long, default_value_t = String::from("solution/src/solution"))]
     pub output_dir: String,
     /// lang
-    #[arg(short, long, default_value_t = String::from("rs"))]
+    #[arg(short, long, default_value_t = String::from("rust"))]
     pub lang: String,
+    /// series
+    /// - solution
+    /// - lcp
+    #[arg(short, long, default_value_t = String::from("solution"))]
+    pub series: String,
 }
