@@ -1,10 +1,24 @@
+use std::convert::From;
+use std::iter::FromIterator;
 use std::ops::{AddAssign, Sub};
 
-pub struct PrefixSum<T>
+pub struct PrefixSum<T> {
+    container: Vec<T>,
+}
+
+impl<T> FromIterator<T> for PrefixSum<T>
 where
     T: Copy + AddAssign + Default + Sub,
 {
-    container: Vec<T>,
+    fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self {
+        let mut container = vec![Default::default()];
+        let mut acc = Default::default();
+        for value in iter {
+            acc += value;
+            container.push(acc);
+        }
+        Self { container }
+    }
 }
 
 impl<T> From<Vec<T>> for PrefixSum<T>
