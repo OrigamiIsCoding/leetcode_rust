@@ -3,12 +3,8 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn subarray_sum(nums: Vec<i32>, k: i32) -> i32 {
-        let mut count = 0;
-        
-        todo!()
-
-        count
+    pub fn subarray_sum(_nums: Vec<i32>, _k: i32) -> i32 {
+        todo!();
     }
 }
 
