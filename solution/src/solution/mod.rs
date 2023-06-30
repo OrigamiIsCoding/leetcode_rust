@@ -1,3 +1,4 @@
+mod s0001_two_sum;
 mod s0022_generate_parentheses;
 mod l0041_f_hi6r_v;
 mod s0084_largest_rectangle_in_histogra;
@@ -12,6 +13,7 @@ mod s0315_count_of_smaller_numbers_after_self;
 mod s0334_increasing_triplet_subsequence;
 mod s0415_add_strings;
 mod s0455_assign_cookies;
+mod s0542_01_matrix;
 mod s0560_subarray_sum_equals_k;
 mod s0605_can_place_flowers;
 mod s0662_maximum_width_of_binary_tree;

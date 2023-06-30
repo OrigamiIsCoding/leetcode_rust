@@ -40,6 +40,7 @@ macro_rules! input {
     };
 }
 
+
 #[cfg(test)]
 mod tests {
     #[test]
@@ -53,7 +54,4 @@ mod tests {
         let svec: Vec<String> = vec_into!["123"];
         assert_eq!(vec!["123".to_string()], svec);
     }
-
-    #[test]
-    fn test_input() {}
 }
