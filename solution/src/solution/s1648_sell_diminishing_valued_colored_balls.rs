@@ -15,7 +15,7 @@ impl Solution {
         let mut multiple = 1;
 
         // 等差数列求和
-        let sum = |l, r| ((l + r) as i64 * (r - l + 1) as i64 / 2) % MOD;
+        let sum = |l, r| ((l + r) * (r - l + 1) / 2) % MOD;
 
         while let Some(count) = iter.next() {
             let count = count as i64;

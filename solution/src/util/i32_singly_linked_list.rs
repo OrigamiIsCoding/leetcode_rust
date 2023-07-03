@@ -22,6 +22,13 @@ impl ListNode {
     }
 }
 
+#[macro_export]
+macro_rules! list {
+    ( $( $ele:expr ) , *) => {
+       ListNode::box_list(vec![$($ele.into()), *])
+    };
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -38,5 +45,17 @@ mod tests {
             })),
         }));
         assert_eq!(actual, excepted);
+    }
+
+    #[test]
+    fn test_list() {
+        let excepted = Some(Box::new(ListNode {
+            val: 1,
+            next: Some(Box::new(ListNode {
+                val: 2,
+                next: Some(Box::new(ListNode { val: 3, next: None })),
+            })),
+        }));
+        assert_eq!(list!(1, 2, 3), excepted);
     }
 }

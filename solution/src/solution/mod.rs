@@ -1,6 +1,14 @@
 mod s0001_two_sum;
+mod s0002_add_two_numbers;
+mod s0003_longest_substring_without_repeating_characters;
+mod s0009_palindrome_number;
+mod s0014_longest_common_prefix;
+mod s0017_letter_combinations_of_a_phone_number;
+mod s0020_valid_parentheses;
+mod s0021_merge_two_sorted_lists;
 mod s0022_generate_parentheses;
 mod l0041_f_hi6r_v;
+mod s0066_plus_one;
 mod s0084_largest_rectangle_in_histogra;
 mod s0085_maximal_rectangle;
 mod s0120_triangle;

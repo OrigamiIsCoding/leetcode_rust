@@ -37,8 +37,10 @@ macro_rules! input {
             $(
                 println!("name = {:?} value = {:?}", name, value);
             )*
+        todo!()
     };
 }
+
 
 
 #[cfg(test)]
