@@ -23,6 +23,7 @@ mod s0334_increasing_triplet_subsequence;
 mod s0415_add_strings;
 mod s0445_add_two_numbers_ii;
 mod s0455_assign_cookies;
+mod s0518_coin_change_ii;
 mod s0542_01_matrix;
 mod s0560_subarray_sum_equals_k;
 mod s0605_can_place_flowers;
