@@ -1,5 +1,5 @@
 /// Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug, PartialOrd, Ord)]
+#[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
     pub next: Option<Box<ListNode>>,
@@ -29,6 +29,17 @@ macro_rules! list {
     };
 }
 
+#[macro_export]
+macro_rules! list_vec {
+    [ $( [ $( $d:expr ),* ] ),* ] => {
+        vec![
+            $(
+                list![$($d),*],
+            )*
+        ]
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -44,7 +55,7 @@ mod tests {
                 next: Some(Box::new(ListNode { val: 3, next: None })),
             })),
         }));
-        assert_eq!(actual, excepted);
+        assert_eq!(excepted, actual);
     }
 
     #[test]
@@ -56,6 +67,13 @@ mod tests {
                 next: Some(Box::new(ListNode { val: 3, next: None })),
             })),
         }));
-        assert_eq!(list!(1, 2, 3), excepted);
+        assert_eq!(excepted, list![1, 2, 3]);
+    }
+
+    #[test]
+    fn test_list_vec() {
+        let excepted = vec![list![3, 2, 1], list![2, 1], list![1], list![]];
+        let acutal = list_vec![[3, 2, 1], [2, 1], [1], []];
+        assert_eq!(excepted, acutal);
     }
 }
