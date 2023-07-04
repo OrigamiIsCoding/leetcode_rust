@@ -33,19 +33,19 @@ fn new_node(value: i32) -> Rc<RefCell<ListNode>> {
 
 impl Debug for MyLinkedList {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let mut values = Vec::new();
+        // let values = Vec::new();
 
-        let mut current = self.head.borrow().next.clone();
-        while if let Some(current) = current {
-            if current == self.tail {
-                break
-            }
-            values.push(current.borrow().val);
-            current = current.borrow().next.unwrap();
-        }
+        // // let mut current = self.head.borrow().next.clone();
+        // // while let Some(current) = current {
+        // //     if current.borrow() == self.tail.borrow() {
+        // //         break
+        // //     }
+        // //     values.push(current.borrow().val);
+        // //     current = current.borrow().next.unwrap();
+        // // };
 
         f.debug_struct("MyLinkedList")
-            .field("values", &values)
+            // .field("values", &values)
             .field("size", &self.size)
             .finish()
     }

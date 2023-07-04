@@ -66,4 +66,7 @@ mod s2485_find_the_pivot_integer;
 mod s2490_circular_sentence;
 mod s2496_maximum_value_of_a_string_in_an_array;
 mod s2540_minimum_common_value;
+mod s2579_count_total_number_of_colored_cells;
+mod s2610_convert_an_array_into_a_2d_array_with_conditions;
 mod s2611_mice_and_cheese;
+mod s2679_sum_in_a_matrix;
