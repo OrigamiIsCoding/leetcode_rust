@@ -32,28 +32,27 @@ impl Solution {
                 }
             }
         }
-        
+
         dfs(&root)[1]
     }
 }
 
 #[cfg(test)]
 mod tests {
+    use crate::tree;
+
     use super::*;
 
     #[test]
     fn test_1() {
         assert_eq!(
             5,
-            Solution::find_second_minimum_value(TreeNode::build(vec![2, 2, 5, -1, -1, 5, 7]))
+            Solution::find_second_minimum_value(tree![2, 2, 5, null, null, 5, 7])
         )
     }
 
     #[test]
     fn test_2() {
-        assert_eq!(
-            -1,
-            Solution::find_second_minimum_value(TreeNode::build(vec![2, 2, 2]))
-        )
+        assert_eq!(-1, Solution::find_second_minimum_value(tree![2, 2, 2]))
     }
 }

@@ -44,12 +44,13 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::tree;
 
     #[test]
     fn test_1() {
         assert_eq!(
             4,
-            Solution::width_of_binary_tree(TreeNode::build(vec![1, 3, 2, 5, 3, -1, 9]))
+            Solution::width_of_binary_tree(tree![1, 3, 2, 5, 3, null, 9])
         );
     }
 
@@ -57,14 +58,11 @@ mod tests {
     fn test_2() {
         assert_eq!(
             7,
-            Solution::width_of_binary_tree(TreeNode::build(vec![1, 3, 2, 5, -1, -1, 9, 6, -1, 7]))
+            Solution::width_of_binary_tree(tree![1, 3, 2, 5, null, null, 9, 6, null, 7])
         );
     }
     #[test]
     fn test_3() {
-        assert_eq!(
-            2,
-            Solution::width_of_binary_tree(TreeNode::build(vec![1, 3, 2, 5]))
-        );
+        assert_eq!(2, Solution::width_of_binary_tree(tree![1, 3, 2, 5]));
     }
 }
