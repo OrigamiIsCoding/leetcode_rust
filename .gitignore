@@ -1,7 +1,5 @@
 /target
-.devcontainer/
 Cargo.lock
-.vscode
 leetcode_rust
 leetcode_rust.*
 lcli

@@ -26,15 +26,14 @@ impl NumberContainers {
         self.container.insert(index, number);
         self.indexs
             .entry(number)
-            .or_insert_with(|| Default::default())
+            .or_insert_with(Default::default)
             .insert(index);
     }
 
     fn find(&self, number: i32) -> i32 {
         self.indexs
             .get(&number)
-            .map(|index| index.iter().nth(0)) // index.first()
-            .flatten()
+            .and_then(|index| index.iter().next()) // index.first()
             .copied()
             .unwrap_or(-1)
     }

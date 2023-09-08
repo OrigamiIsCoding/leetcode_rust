@@ -8,24 +8,25 @@ use clap::Parser;
     about = "generate solution code."
 )]
 pub struct Args {
-    /// problem id
+    /// Problem id
     #[arg(short, long)]
     pub id: usize,
-    /// template Path
+    /// Template path
     #[arg(short = 'p', long, default_value_t = String::from("templates/*"))]
     pub template_path: String,
-    /// problem url
+    /// Problem url
     #[arg(short, long)]
     pub url: String,
-    /// code output solution dir
+    /// Code output solution dir
     #[arg(short, long, default_value_t = String::from("solution/src/solution"))]
     pub output_dir: String,
-    /// lang
+    /// Lang
     #[arg(short, long, default_value_t = String::from("rust"))]
     pub lang: String,
-    /// series
+    /// Problem series, such as
     /// - solution
     /// - lcp
+    /// - interview : { pattern: "面试题 xx.xx problem_name" }
     #[arg(short, long, default_value_t = String::from("solution"))]
     pub series: String,
 }
