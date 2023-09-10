@@ -4,9 +4,8 @@ pub struct Solution;
 
 impl Solution {
     pub fn longest_alternating_subarray(nums: Vec<i32>, threshold: i32) -> i32 {
-        let mut nums = nums.into_iter();
         let (mut prev, mut ans, mut current) = (None, 0, 0);
-        while let Some(value) = nums.next() {
+        for value in nums {
             if value > threshold {
                 prev = None;
                 continue;
@@ -14,14 +13,12 @@ impl Solution {
             prev = if prev.map_or(false, |prev| prev % 2 != value % 2) {
                 current += 1;
                 Some(value)
+            } else if value % 2 == 0 {
+                current = 1;
+                Some(value)
             } else {
-                if value % 2 == 0 {
-                    current = 1;
-                    Some(value)
-                } else {
-                    current = 0;
-                    None
-                }
+                current = 0;
+                None
             };
             ans = ans.max(current);
         }
