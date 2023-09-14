@@ -24,15 +24,13 @@ impl Solution {
 
     fn check_valid_grid_impl(x: i32, y: i32, grid: &Vec<Vec<i32>>, n: i32) -> bool {
         if grid[x as usize][y as usize] == n * n - 1 {
-            return true;
+            true
         } else {
             for (dx, dy) in Self::D {
                 let (nx, ny) = (x + dx, y + dy);
 
-                if nx >= 0
-                    && nx < n
-                    && ny >= 0
-                    && ny < n
+                if (0..n).contains(&nx)
+                    && (0..n).contains(&ny)
                     && grid[x as usize][y as usize] + 1 == grid[nx as usize][ny as usize]
                 {
                     return Self::check_valid_grid_impl(nx, ny, grid, n);

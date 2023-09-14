@@ -20,7 +20,7 @@ impl Solution {
         for (dx, dy) in Self::D {
             for idx in (0..8).map_while(|i| {
                 let (nx, ny) = (x + i * dx, y + i * dy);
-                if nx >= 0 && nx < 8 && ny >= 0 && ny < 8 {
+                if (0..8).contains(&nx) && (0..8).contains(&ny) {
                     Some((nx, ny))
                 } else {
                     None
