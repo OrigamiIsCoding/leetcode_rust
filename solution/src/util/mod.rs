@@ -1,3 +1,4 @@
+pub mod assert;
 pub mod i32_binary_tree;
 pub mod i32_singly_linked_list;
 
@@ -47,8 +48,6 @@ macro_rules! input {
         todo!()
     };
 }
-
-
 
 #[cfg(test)]
 mod tests {
