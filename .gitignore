@@ -1,5 +1,7 @@
+.idea/
 /target
 Cargo.lock
 leetcode_rust
 leetcode_rust.*
 lcli
+cli.exe

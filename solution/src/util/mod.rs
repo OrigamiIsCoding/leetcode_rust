@@ -3,7 +3,7 @@ pub mod i32_binary_tree;
 pub mod i32_singly_linked_list;
 
 #[macro_export]
-macro_rules! mat{
+macro_rules! mat {
     [ $( [ $( $d:expr ),* ] ),* ] => {
         vec![
             $(
@@ -40,7 +40,6 @@ macro_rules! vec_char {
 
 #[macro_export]
 macro_rules! input {
-    // capacity = [10,2,2], rocks = [2,2,0], additionalRocks = 100
     ( $( $name : item = $value:item ), *) => {
             $(
                 println!("name = {:?} value = {:?}", name, value);
