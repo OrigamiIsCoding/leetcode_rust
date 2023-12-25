@@ -34,7 +34,7 @@ impl Solution {
         dfs(0, 1, &root, &mut min, &mut max);
 
         min.into_iter()
-            .zip(max.into_iter())
+            .zip(max)
             .map(|(a, b)| b - a + 1)
             .max()
             .unwrap_or(0) as i32

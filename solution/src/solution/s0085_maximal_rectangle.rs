@@ -8,12 +8,12 @@ impl Solution {
             return 0;
         }
         let m = matrix[0].len();
-        let mut matrix: Vec<_> = vec![
+        let mut matrix = [
             vec![vec![0; m + 1]],
             matrix
                 .into_iter()
                 .map(|row| {
-                    vec![
+                    [
                         vec![0],
                         row.into_iter()
                             .map(|v| if v == '1' { 1 } else { 0 })

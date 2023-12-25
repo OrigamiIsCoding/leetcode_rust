@@ -6,7 +6,7 @@ impl Solution {
     pub fn maximum_bags(capacity: Vec<i32>, rocks: Vec<i32>, mut additional_rocks: i32) -> i32 {
         let mut remains: Vec<_> = capacity
             .into_iter()
-            .zip(rocks.into_iter())
+            .zip(rocks)
             .map(|(c, r)| c - r)
             .collect();
         remains.sort();

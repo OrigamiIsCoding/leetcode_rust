@@ -22,8 +22,7 @@ impl Solution {
                 } else {
                     current += 1;
                     ans.push(nodes);
-                    nodes = Vec::new();
-                    nodes.push(node.borrow().val);
+                    nodes = vec![node.borrow().val];
                 }
             }
         }
