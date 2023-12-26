@@ -82,6 +82,7 @@ mod s1262_greatest_sum_divisible_by_three;
 mod s1276_number_of_burgers_with_no_waste_of_ingredients;
 mod s1309_decrypt_string_from_alphabet_to_integer_mapping;
 mod s1323_maximum_69_number;
+mod s1349_maximum_students_taking_exam;
 mod s1365_how_many_numbers_are_smaller_than_the_current_number;
 mod s1375_number_of_times_binary_string_is_prefix_aligned;
 mod s1376_time_needed_to_inform_all_employees;
